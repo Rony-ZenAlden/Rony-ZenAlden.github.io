@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rony Zeenaldeen | Back-End & AI Engineer — Django, Go, RAG, LLM Systems</title>
+<meta name="description" content="Rony Zeenaldeen — Back-End & AI Engineer with 4+ years building production systems. Polyglot: Python (Django) + Go microservices. Built NeuroSeek AI — a self-hosted RAG platform on a 4 GB VPS. Open to roles in Germany & Netherlands.">
+<meta name="keywords" content="Rony Zeenaldeen, Back-End Engineer, AI Engineer, ML Engineer, Django Developer, Go Developer, Golang, Python, RAG, LLM, pgvector, Agent Orchestration, NeuroSeek AI, Germany, Netherlands, EU Blue Card">
+<meta name="author" content="Rony Zeenaldeen">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rony-zenalden.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rony-zenalden.github.io/">
+<meta property="og:title" content="Rony Zeenaldeen | Back-End & AI Engineer">
+<meta property="og:description" content="Back-End & AI Engineer with 4+ years. Polyglot: Python (Django) + Go. Built NeuroSeek AI — self-hosted RAG platform on a 4 GB VPS. Open to EU roles.">
+<meta property="og:image" content="https://rony-zenalden.github.io/profile.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rony Zeenaldeen | Back-End & AI Engineer">
+<meta name="twitter:description" content="Back-End & AI Engineer · Python (Django) + Go · RAG, LLM systems, pgvector. Built NeuroSeek AI on a 4 GB VPS.">
+<meta name="twitter:image" content="https://rony-zenalden.github.io/profile.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Rony Zeenaldeen",
+  "url": "https://rony-zenalden.github.io",
+  "image": "https://rony-zenalden.github.io/profile.jpg",
+  "email": "ronizenalden@gmail.com",
+  "jobTitle": "Back-End & AI Engineer",
+  "description": "Back-End & AI Engineer with 4+ years building production-grade systems. Polyglot: Python (Django) + Go microservices. Built NeuroSeek AI — a self-hosted RAG research platform.",
+  "sameAs": [
+    "https://github.com/Rony-ZenAlden",
+    "https://www.linkedin.com/in/rony-zeenaldeen-b288112ab/"
+  ]
+}
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ═══ VARIABLES & RESET ═══ */
+:root {
+  --bg:       #FFFFFF;
+  --bg2:      #F6F8FA;
+  --surface:  #FFFFFF;
+  --surface2: #F0F4F8;
+  --border:   #D0D7DE;
+  --accent:   #0A7CFF;
+  --accent2:  #00B386;
+  --accent3:  #FF4D6D;
+  --text:     #0D1117;
+  --muted:    #57606A;
+  --shadow:   rgba(0,0,0,0.08);
+  --mono: 'Space Mono', monospace;
+  --sans: 'Syne', sans-serif;
+  --nav-h: 64px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; max-width: 100vw; cursor: none; }
+
+/* ── custom cursor (desktop only) ── */
+.cursor { width:12px;height:12px;background:var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s; }
+.cursor-ring { width:36px;height:36px;border:1.5px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:0.4; }
+@media(pointer:coarse){ body{cursor:auto;} .cursor,.cursor-ring{display:none;} }
+
+/* ── scrollbar ── */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:var(--bg2); }
+::-webkit-scrollbar-thumb { background:var(--accent);border-radius:2px; }
+
+/* ── dot grid background ── */
+body::before { content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(10,124,255,0.06) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0; }
+
+/* ── orbs ── */
+.orb { position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0; }
+.orb-1 { width:500px;height:500px;background:rgba(10,124,255,0.07);top:-150px;left:-150px;animation:float1 9s ease-in-out infinite; }
+.orb-2 { width:400px;height:400px;background:rgba(0,179,134,0.05);bottom:10%;right:-120px;animation:float2 11s ease-in-out infinite; }
+@keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(50px,40px)} }
+@keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-40px,-50px)} }
+
+/* ═══ NAVBAR ═══ */
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(16px,4vw,60px);height:var(--nav-h);
+  background:rgba(255,255,255,0.88);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);transition:background 0.3s,box-shadow 0.3s;
+}
+nav.scrolled { background:rgba(255,255,255,0.98);box-shadow:0 2px 20px rgba(0,0,0,0.08); }
+.nav-logo { font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:0.05em;white-space:nowrap; }
+.nav-logo span { color:var(--muted); }
+
+/* Desktop links */
+.nav-links { display:flex;gap:28px;list-style:none;align-items:center; }
+.nav-links a { font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s;position:relative;white-space:nowrap; }
+.nav-links a::after { content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width 0.3s;border-radius:1px; }
+.nav-links a:hover { color:var(--accent); }
+.nav-links a:hover::after { width:100%; }
+.nav-cv { font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;background:var(--accent);color:#fff;text-decoration:none;border-radius:4px;transition:all 0.2s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap; }
+.nav-cv:hover { background:#0066dd;transform:translateY(-1px); }
+
+/* Mobile hamburger */
+.nav-hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none;z-index:210; }
+.nav-hamburger span { display:block;width:22px;height:2px;background:var(--text);border-radius:1px;transition:all 0.3s; }
+.nav-hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.nav-hamburger.open span:nth-child(2) { opacity:0; }
+.nav-hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+/* Mobile menu drawer */
+.mobile-menu {
+  display:none;position:fixed;top:var(--nav-h);left:0;right:0;z-index:199;
+  background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);padding:20px clamp(16px,4vw,32px) 28px;
+  flex-direction:column;gap:0;
+  transform:translateY(-10px);opacity:0;
+  transition:transform 0.25s ease,opacity 0.25s ease;
+}
+.mobile-menu.open { display:flex;transform:translateY(0);opacity:1; }
+.mobile-menu a { font-family:var(--mono);font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:14px 0;border-bottom:1px solid var(--border);display:block;transition:color 0.2s; }
+.mobile-menu a:last-child { border-bottom:none; }
+.mobile-menu a:hover { color:var(--accent); }
+.mobile-menu .m-cv { color:var(--accent);font-weight:700;margin-top:8px;border:1.5px solid var(--accent);padding:12px 16px;border-radius:6px;text-align:center;border-bottom:1.5px solid var(--accent) !important; }
+
+@media(max-width:860px) {
+  .nav-links { display:none; }
+  .nav-hamburger { display:flex; }
+}
+
+/* ── fixed social sidebar ── */
+.social-bar { position:fixed;left:24px;bottom:0;z-index:100;display:flex;flex-direction:column;align-items:center;gap:14px; }
+.social-bar a { color:var(--muted);text-decoration:none;transition:color 0.2s,transform 0.2s;display:flex; }
+.social-bar a:hover { color:var(--accent);transform:translateY(-3px); }
+.social-bar::after { content:'';display:block;width:1px;height:80px;background:var(--border);margin-top:6px; }
+.social-bar svg { width:20px;height:20px; }
+@media(max-width:860px){ .social-bar{display:none;} }
+
+/* ═══ HERO ═══ */
+#hero {
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  padding:calc(var(--nav-h) + 56px) clamp(20px,8vw,100px) 80px;
+  position:relative;overflow:hidden;gap:clamp(24px,4vw,60px);
+}
+.hero-left { display:flex;flex-direction:column;min-width:0;max-width:100%; }
+.hero-badge { display:inline-flex;align-items:center;gap:8px;background:#EBF5FF;border:1px solid #BFD9FF;color:var(--accent);font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:28px;width:fit-content;opacity:0;animation:fadeUp 0.6s 0.1s forwards; }
+.hero-badge-dot { width:6px;height:6px;background:var(--accent2);border-radius:50%;animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero-name { font-family:var(--sans);font-size:clamp(34px,9vw,100px);font-weight:800;line-height:0.95;letter-spacing:-0.03em;color:var(--text);opacity:0;animation:fadeUp 0.7s 0.3s forwards;overflow-wrap:break-word;word-break:break-word; }
+.hero-name .accent { color:var(--accent); }
+.hero-title { font-family:var(--mono);font-size:clamp(12px,1.8vw,18px);color:var(--muted);margin-top:20px;opacity:0;animation:fadeUp 0.7s 0.5s forwards; }
+.hero-title .hl { color:var(--accent2);font-weight:700; }
+.hero-desc { max-width:520px;width:100%;margin-top:24px;font-size:clamp(14px,1.5vw,16px);line-height:1.75;color:var(--muted);opacity:0;animation:fadeUp 0.7s 0.7s forwards;overflow-wrap:break-word;word-wrap:break-word; }
+.hero-cta { display:flex;gap:12px;margin-top:40px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.7s 0.9s forwards; }
+
+/* Profile photo area */
+.hero-right { display:flex;flex-direction:column;align-items:center;gap:20px;opacity:0;animation:fadeIn 1s 1s forwards; }
+.profile-wrap { position:relative;width:clamp(180px,20vw,260px);height:clamp(180px,20vw,260px); }
+.profile-ring { position:absolute;inset:-8px;border-radius:50%;border:2px dashed rgba(10,124,255,0.25);animation:spin 20s linear infinite; }
+@keyframes spin { to{transform:rotate(360deg)} }
+.profile-img { width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 8px 40px rgba(10,124,255,0.15);display:block; }
+.profile-placeholder { width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#EBF5FF 0%,#E6F4F1 100%);border:4px solid #fff;box-shadow:0 8px 40px rgba(10,124,255,0.15);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:clamp(32px,5vw,48px);font-weight:700;color:var(--accent); }
+.profile-badge { background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 18px;box-shadow:0 4px 20px var(--shadow);text-align:center; }
+.profile-badge-val { font-family:var(--mono);font-size:22px;font-weight:700;color:var(--accent);display:block; }
+.profile-badge-label { font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px;display:block; }
+
+/* terminal line */
+.terminal-line { font-family:var(--mono);font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;margin-top:32px;opacity:0;animation:fadeIn 0.5s 1.4s forwards;background:var(--bg2);border:1px solid var(--border);padding:10px 16px;border-radius:6px;width:fit-content;max-width:100%; }
+.terminal-line .prompt { color:var(--accent2); }
+.caret { display:inline-block;width:7px;height:13px;background:var(--accent);animation:blink 1s step-end infinite;vertical-align:middle;flex-shrink:0; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* Hero responsive */
+@media(max-width:860px) {
+  #hero { grid-template-columns:1fr;padding:calc(var(--nav-h) + 40px) clamp(16px,5vw,40px) 60px;gap:32px; }
+  .hero-right { flex-direction:row;justify-content:flex-start;align-items:center;order:-1;gap:16px; }
+  .profile-wrap { width:120px;height:120px; }
+  .profile-badge { padding:8px 14px; }
+  .profile-badge-val { font-size:18px; }
+}
+@media(max-width:480px) {
+  #hero { padding:calc(var(--nav-h) + 32px) 14px 50px;gap:24px; }
+  .hero-right { gap:12px; }
+  .profile-wrap { width:100px;height:100px; }
+  .hero-cta { gap:8px; }
+  .hero-cta .btn { flex:1 1 calc(50% - 4px);min-width:0;justify-content:center;padding:11px 12px;font-size:10px; }
+  .hero-desc { font-size:14px;line-height:1.65; }
+  .hero-title { font-size:13px; }
+  .terminal-line { font-size:11px;padding:8px 12px; }
+}
+@media(max-width:360px) {
+  #hero { padding:calc(var(--nav-h) + 24px) 12px 40px; }
+  .hero-name { font-size:30px; }
+  .profile-wrap { width:84px;height:84px; }
+  .profile-badge-val { font-size:16px; }
+}
+
+/* ═══ BUTTONS ═══ */
+.btn { font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:12px 22px;text-decoration:none;border-radius:6px;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;cursor:pointer;border:none;font-weight:700;white-space:nowrap; }
+.btn-primary { background:var(--accent);color:#fff; }
+.btn-primary:hover { background:#0066dd;transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,124,255,0.30); }
+.btn-secondary { background:var(--accent2);color:#fff; }
+.btn-secondary:hover { background:#009970;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,179,134,0.30); }
+.btn-outline { border:1.5px solid var(--border);color:var(--muted);background:transparent; }
+.btn-outline:hover { border-color:var(--accent);color:var(--accent);transform:translateY(-2px); }
+@media(max-width:400px){
+  .btn { padding:10px 14px;font-size:10px; }
+}
+
+/* ═══ METRICS STRIP ═══ */
+.metrics-strip { display:flex;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);position:relative;z-index:1;flex-wrap:wrap; }
+.metric-item { flex:1 1 25%;min-width:140px;padding:clamp(20px,3vw,32px) clamp(12px,2vw,24px);text-align:center;border-right:1px solid var(--border);transition:background 0.2s; }
+.metric-item:last-child { border-right:none; }
+.metric-item:hover { background:#EBF5FF; }
+.metric-val { font-family:var(--mono);font-size:clamp(22px,3.5vw,32px);font-weight:700;color:var(--accent);display:block; }
+.metric-label { font-family:var(--mono);font-size:clamp(8px,1vw,10px);color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:6px;display:block; }
+@media(max-width:600px) {
+  .metric-item { flex:1 1 50%;border-bottom:1px solid var(--border); }
+  .metric-item:nth-child(2) { border-right:none; }
+  .metric-item:nth-child(3) { border-right:1px solid var(--border); }
+  .metric-item:nth-child(4) { border-right:none; }
+}
+
+/* ═══ SECTION LAYOUT ═══ */
+.section-wrap { position:relative;z-index:1;padding:clamp(52px,8vw,90px) clamp(16px,5vw,60px);max-width:1200px;margin:0 auto; }
+.full-divider { width:100%;height:1px;background:var(--border);position:relative;z-index:1; }
+.section-header { display:flex;align-items:baseline;gap:16px;margin-bottom:clamp(32px,5vw,52px);flex-wrap:wrap; }
+.section-num { font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:0.1em;white-space:nowrap; }
+.section-title { font-family:var(--sans);font-size:clamp(22px,4vw,44px);font-weight:800;letter-spacing:-0.02em; }
+.section-line { flex:1;min-width:20px;height:1px;background:var(--border); }
+
+/* ═══ GITHUB STATS ═══ */
+.github-stats { background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:clamp(20px,3vw,32px);display:flex;flex-direction:column;gap:20px;align-items:center; }
+.github-stats-title { font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase; }
+.github-stats-imgs { display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:flex-start; }
+.github-stats-imgs img { border-radius:8px;max-width:100%;height:auto; }
+
+/* ═══ SKILLS ═══ */
+.skills-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px; }
+.skill-group { background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:clamp(16px,2.5vw,24px);transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s; }
+.skill-group:hover { border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 24px var(--shadow); }
+.skill-group-title { font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;display:flex;align-items:center;gap:10px; }
+.dot { width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block; }
+.skill-tags { display:flex;flex-wrap:wrap;gap:8px; }
+.tag { font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:4px 10px;transition:all 0.2s; }
+.tag:hover { color:var(--accent);border-color:var(--accent);background:#EBF5FF; }
+
+/* ═══ EXPERIENCE TIMELINE ═══ */
+.timeline { position:relative;padding-left:32px; }
+.timeline::before { content:'';position:absolute;left:0;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--accent),transparent);border-radius:1px; }
+.exp-item { position:relative;margin-bottom:clamp(36px,5vw,52px);opacity:0;transform:translateX(-20px);transition:opacity 0.6s,transform 0.6s; }
+.exp-item.visible { opacity:1;transform:none; }
+.exp-item::before { content:'';position:absolute;left:-37px;top:8px;width:12px;height:12px;background:var(--accent);border-radius:50%;border:3px solid var(--bg);box-shadow:0 0 0 2px var(--accent); }
+.exp-meta { font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.05em;margin-bottom:6px; }
+.exp-meta .period { color:var(--accent);margin-left:12px; }
+.exp-role { font-size:clamp(18px,2.5vw,22px);font-weight:700;margin-bottom:4px; }
+.exp-company { font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:16px; }
+.exp-bullets { list-style:none;display:flex;flex-direction:column;gap:10px; }
+.exp-bullets li { font-size:14px;line-height:1.65;color:var(--muted);padding-left:16px;position:relative; }
+.exp-bullets li::before { content:'▸';position:absolute;left:0;color:var(--accent);font-size:10px;top:3px; }
+.exp-bullets li strong { color:var(--text); }
+@media(max-width:480px) {
+  .timeline { padding-left:20px; }
+  .exp-item::before { left:-25px; }
+}
+
+/* ═══ PROJECTS ═══ */
+.projects-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px; }
+.project-card { background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:clamp(20px,3vw,28px);display:flex;flex-direction:column;gap:14px;transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;opacity:0;transform:translateY(20px); }
+.project-card.visible { opacity:1;transform:none; }
+.project-card:hover { border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(10,124,255,0.10); }
+.project-badge { display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent2);background:rgba(0,179,134,0.08);border:1px solid rgba(0,179,134,0.25);border-radius:20px;padding:4px 10px;width:fit-content; }
+.badge-dot { width:5px;height:5px;background:var(--accent2);border-radius:50%;animation:pulse 2s infinite; }
+.project-name { font-size:clamp(16px,2vw,19px);font-weight:700;letter-spacing:-0.01em; }
+.project-desc { font-size:14px;line-height:1.65;color:var(--muted);flex:1; }
+.project-desc strong { color:var(--accent); }
+.project-tech { display:flex;flex-wrap:wrap;gap:6px; }
+.tech-pill { font-family:var(--mono);font-size:10px;color:var(--muted);background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:3px 8px; }
+.project-link { font-family:var(--mono);font-size:11px;color:var(--accent);text-decoration:none;letter-spacing:0.08em;display:inline-flex;align-items:center;gap:6px;margin-top:4px;padding:8px 14px;border:1.5px solid rgba(10,124,255,0.3);border-radius:6px;width:fit-content;transition:all 0.2s; }
+.project-link:hover { background:var(--accent);color:#fff;border-color:var(--accent); }
+@media(max-width:700px) {
+  .projects-grid { grid-template-columns:1fr; }
+}
+
+/* ═══ CERTIFICATIONS ═══ */
+.certs-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px; }
+.cert-card { background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:clamp(16px,2.5vw,22px);transition:all 0.3s;cursor:pointer; }
+.cert-card:hover { border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 20px var(--shadow); }
+.cert-issuer { font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px; }
+.cert-name { font-size:15px;font-weight:600;line-height:1.3;color:var(--text); }
+.cert-year { font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:6px; }
+
+/* ═══ CONTACT ═══ */
+.contact-grid { display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,60px);align-items:start; }
+@media(max-width:760px) {
+  .contact-grid { grid-template-columns:1fr;gap:36px; }
+}
+.contact-links { display:flex;flex-direction:column;gap:10px; }
+.contact-item { display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--muted);padding:12px 18px;background:var(--surface);border:1px solid var(--border);border-radius:8px;transition:all 0.2s; }
+.contact-item:hover { color:var(--text);border-color:var(--accent);box-shadow:0 4px 12px var(--shadow); }
+.contact-item .icon { color:var(--accent);font-size:16px;min-width:22px; }
+
+/* contact form */
+.contact-form-wrap { background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:clamp(24px,4vw,36px); }
+.form-title { font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px; }
+.form-hint { font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:20px; }
+.form-group { display:flex;flex-direction:column;gap:6px;margin-bottom:14px; }
+.form-group label { font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase; }
+.form-group input, .form-group textarea { background:var(--surface);border:1.5px solid var(--border);border-radius:6px;padding:12px 14px;color:var(--text);font-family:var(--sans);font-size:14px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;resize:none;width:100%; }
+.form-group input:focus, .form-group textarea:focus { border-color:var(--accent);box-shadow:0 0 0 3px rgba(10,124,255,0.1); }
+.form-group input::placeholder, .form-group textarea::placeholder { color:#B0B8C1; }
+.form-row { display:grid;grid-template-columns:1fr 1fr;gap:14px; }
+@media(max-width:480px) { .form-row { grid-template-columns:1fr; } }
+.form-submit { background:var(--accent);color:#fff;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:14px 28px;border:none;border-radius:6px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:8px; }
+.form-submit:hover { background:#0066dd;transform:translateY(-2px);box-shadow:0 8px 24px rgba(10,124,255,0.30); }
+.form-success { display:none;background:#E6F9F3;border:1px solid #80DEC0;border-radius:6px;padding:14px;font-family:var(--mono);font-size:12px;color:var(--accent2);text-align:center;letter-spacing:0.05em;margin-top:12px; }
+.form-success.show { display:block; }
+
+/* availability */
+.avail-box { background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:clamp(16px,3vw,24px);margin-top:20px; }
+.avail-status { display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:13px;color:var(--accent2); }
+.status-dot { width:10px;height:10px;background:var(--accent2);border-radius:50%;animation:pulse 2s infinite;flex-shrink:0; }
+.avail-details { display:flex;flex-direction:column;gap:10px;margin-top:14px; }
+.avail-row { display:flex;gap:12px;align-items:baseline; }
+.avail-key { font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;min-width:72px;flex-shrink:0; }
+.avail-val { font-size:14px;color:var(--text); }
+.lang-section { border-top:1px solid var(--border);padding-top:16px;margin-top:16px; }
+.lang-title { font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px; }
+.lang-bars { display:flex;flex-direction:column;gap:10px; }
+.lang-row { display:flex;flex-direction:column;gap:4px; }
+.lang-meta { display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px; }
+.lang-name { color:var(--text); }
+.lang-level { color:var(--muted); }
+.lang-bar { height:4px;background:var(--border);border-radius:2px;overflow:hidden; }
+.lang-fill { height:100%;background:var(--accent);border-radius:2px;transition:width 1.2s ease;width:0; }
+
+/* international chips */
+.intl-badge { display:flex;flex-wrap:wrap;gap:10px;margin-top:16px; }
+.intl-chip { display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:6px 12px;border-radius:20px;border:1px solid; }
+.intl-chip-eu { color:#0050B3;background:#E6F0FF;border-color:#BFD4F2; }
+.intl-chip-de { color:#C73B00;background:#FFF2ED;border-color:#F5C6B3; }
+.intl-chip-nl { color:#C96000;background:#FFF8ED;border-color:#F5DEB3; }
+.intl-chip-remote { color:#006644;background:#E6F9F0;border-color:#B3E8D5; }
+
+/* ═══ FOOTER ═══ */
+footer { background:var(--bg2);border-top:1px solid var(--border);padding:clamp(24px,4vw,40px) clamp(16px,5vw,60px);position:relative;z-index:1; }
+.footer-inner { max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:24px; }
+.footer-top { display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px; }
+.footer-logo { font-family:var(--mono);font-size:16px;color:var(--accent);font-weight:700; }
+.footer-socials { display:flex;gap:12px;flex-wrap:wrap; }
+.footer-socials a { display:flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid var(--border);border-radius:8px;color:var(--muted);text-decoration:none;transition:all 0.2s; }
+.footer-socials a:hover { border-color:var(--accent);color:var(--accent);background:#EBF5FF; }
+.footer-socials svg { width:18px;height:18px; }
+.footer-bottom { display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:var(--muted);flex-wrap:wrap;gap:8px;border-top:1px solid var(--border);padding-top:20px; }
+@media(max-width:600px) {
+  .footer-top { flex-direction:column;text-align:center; }
+  .footer-socials { justify-content:center; }
+}
+
+/* ── animations ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+
+<!-- Fixed social sidebar -->
+<div class="social-bar">
+  <a href="https://github.com/Rony-ZenAlden" target="_blank" rel="noopener" aria-label="GitHub">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+  </a>
+  <a href="https://www.linkedin.com/in/rony-zeenaldeen-b288112ab/" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </a>
+  <a href="mailto:ronizenalden@gmail.com" aria-label="Email">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+  </a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo"><span>//</span> rony-zenalden.github.io</div>
+
+  <!-- Desktop links -->
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li>
+      <a href="Rony_Zeenaldeen_CV.pdf" download class="nav-cv">↓ Download CV</a>
+    </li>
+  </ul>
+
+  <!-- Mobile hamburger -->
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#skills" class="mobile-link">Skills</a>
+  <a href="#experience" class="mobile-link">Experience</a>
+  <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#certifications" class="mobile-link">Certifications</a>
+  <a href="#contact" class="mobile-link">Contact</a>
+  <a href="Rony_Zeenaldeen_CV.pdf" download class="mobile-link m-cv">↓ Download CV</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Open to Opportunities
+    </div>
+    <h1 class="hero-name">Rony<br><span class="accent">Zeenaldeen</span></h1>
+    <p class="hero-title"><span class="hl">Back-End</span> &amp; <span class="hl">AI/ML</span> Engineer · 4+ Years</p>
+    <p class="hero-desc">Back-End &amp; AI Engineer with 4+ years shipping production systems — most recently <strong>NeuroSeek AI</strong>, a self-hosted multi-agent research platform. Polyglot engineer in Python (Django) and Go microservices, with end-to-end ML pipelines from training to deployment. Proven impact: queries from 2,000 ms to under 50 ms, 60–70% API speed-up via Redis caching, ~33× memory reduction by replacing Daphne/Channels with a Go WebSocket microservice, and 65% DB load reduction.</p>
+    <div class="hero-cta">
+      <a href="Rony_Zeenaldeen_CV.pdf" download class="btn btn-secondary">↓ Download CV</a>
+      <a href="#contact" class="btn btn-primary">↗ Get in Touch</a>
+      <a href="https://github.com/Rony-ZenAlden" target="_blank" rel="noopener" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/rony-zeenaldeen-b288112ab/" target="_blank" rel="noopener" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <div class="terminal-line">
+      <span class="prompt">$</span>
+      <span id="typed"></span>
+      <span class="caret"></span>
+    </div>
+  </div>
+
+  <!-- Profile Photo -->
+  <div class="hero-right">
+    <div class="profile-wrap">
+      <div class="profile-ring"></div>
+      <img src="profile.jpg" alt="Rony Zeenaldeen" class="profile-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="profile-placeholder" style="display:none;">RZ</div>
+    </div>
+    <div class="profile-badge">
+      <span class="profile-badge-val">4+</span>
+      <span class="profile-badge-label">Years Experience</span>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS STRIP -->
+<div class="metrics-strip">
+  <div class="metric-item"><span class="metric-val">1M+</span><span class="metric-label">Transactions Forecasted</span></div>
+  <div class="metric-item"><span class="metric-val">50ms</span><span class="metric-label">Query Time (was 2000ms)</span></div>
+  <div class="metric-item"><span class="metric-val">65%</span><span class="metric-label">DB Load Reduction</span></div>
+  <div class="metric-item"><span class="metric-val">3+</span><span class="metric-label">Live Projects Shipped</span></div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- SKILLS -->
+<div class="section-wrap" id="skills">
+  <div class="section-header">
+    <span class="section-num">01.</span>
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title"><span class="dot"></span> Back-End</div>
+      <div class="skill-tags">
+        <span class="tag">Django</span><span class="tag">Go (Golang)</span><span class="tag">Django REST Framework</span>
+        <span class="tag">Node.js</span><span class="tag">NestJS</span><span class="tag">REST API Design</span>
+        <span class="tag">WebSockets</span><span class="tag">Microservices</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span class="dot"></span> AI / ML &amp; LLMs</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">PyTorch</span>
+        <span class="tag">Keras</span><span class="tag">Scikit-learn</span><span class="tag">EfficientNetV2</span>
+        <span class="tag">XGBoost</span><span class="tag">Facebook Prophet</span><span class="tag">Transformer Models</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span class="dot"></span> RAG &amp; Vector Search</div>
+      <div class="skill-tags">
+        <span class="tag">LangChain</span><span class="tag">LlamaIndex</span><span class="tag">Embeddings</span>
+        <span class="tag">pgvector</span><span class="tag">Hybrid Retrieval (RRF)</span>
+        <span class="tag">Sentence-Transformers</span><span class="tag">Vector DB</span>
+        <span class="tag">Agent Orchestration</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span class="dot"></span> Databases</div>
+      <div class="skill-tags">
+        <span class="tag">PostgreSQL</span><span class="tag">Redis</span><span class="tag">MongoDB</span>
+        <span class="tag">MySQL</span><span class="tag">Firebase Firestore</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span class="dot"></span> Cloud &amp; DevOps</div>
+      <div class="skill-tags">
+        <span class="tag">Docker</span><span class="tag">NGINX</span><span class="tag">GitHub Actions</span>
+        <span class="tag">CI/CD</span><span class="tag">Linux</span>
+        <span class="tag">AWS S3</span><span class="tag">AWS RDS</span><span class="tag">Elastic Beanstalk</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title"><span class="dot"></span> Data Engineering &amp; Languages</div>
+      <div class="skill-tags">
+        <span class="tag">ETL Pipelines</span><span class="tag">SQL</span><span class="tag">Power BI</span>
+        <span class="tag">TypeScript</span><span class="tag">JavaScript</span>
+      </div>
+    </div>
+  </div>
+
+<div class="full-divider"></div>
+
+<!-- EXPERIENCE -->
+<div class="section-wrap" id="experience">
+  <div class="section-header">
+    <span class="section-num">02.</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+
+    <div class="exp-item">
+      <div class="exp-meta">Freelance ·<span class="period">Nov 2024 – Present</span></div>
+      <div class="exp-role">AI / ML Engineer</div>
+      <div class="exp-company">Self-Employed</div>
+      <ul class="exp-bullets">
+        <li>Built and deployed a <strong>Retrieval-Augmented Generation (RAG) system</strong> with document ingestion, embeddings, vector search, and LLM-based generation for context-aware QA.</li>
+        <li>Developed a production <strong>NLP platform</strong> with real-time transformer-based inference and batch pipelines for sentiment analysis, complaint detection, and multi-class categorisation.</li>
+        <li>Built a chest X-ray classifier (EfficientNetV2S) achieving <strong>COVID-19 AUC-ROC 0.997</strong> and F1 0.95 — deployed as a live public Django REST API.</li>
+        <li>Developed a sales forecasting pipeline (Facebook Prophet) on <strong>1M+ transactions</strong>, generating 60-day forecasts to support inventory and staffing decisions.</li>
+        <li>Designed an HR attrition model (87% accuracy), estimating <strong>$225K–$450K annual retention savings</strong> at 1,000-employee scale.</li>
+        <li>Deployed and managed services using <strong>AWS (S3, RDS, IAM, SES, Elastic Beanstalk, Route 53)</strong> for scalable production environments.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">Freelance ·<span class="period">Jan 2022 – Present</span></div>
+      <div class="exp-role">Back-End Developer</div>
+      <div class="exp-company">Self-Employed</div>
+      <ul class="exp-bullets">
+        <li>Built and shipped production REST APIs using <strong>Django REST Framework and NestJS</strong> with JWT/OAuth 2.0 authentication, versioning, and full OpenAPI documentation.</li>
+        <li>Authored a <strong>Go (Golang) microservice</strong> for WebSocket fanout via Redis pub/sub, replacing Daphne/Channels and reducing memory footprint from ~1 GB to <strong>~30 MB</strong> (~33× reduction).</li>
+        <li>Optimised system performance: reduced PostgreSQL query time from 2,000 ms to <strong>under 50 ms</strong> and improved API latency by 60–70% using Redis caching.</li>
+        <li>Designed <strong>real-time systems</strong> (WebSockets, Django Channels, Redis) for live ride-matching and location streaming.</li>
+        <li>Integrated payment systems (<strong>Stripe, PayPal, Razorpay</strong>) with secure webhook handling and idempotency keys.</li>
+        <li>Deployed back-end services using <strong>Docker, NGINX, and AWS</strong> infrastructure for high availability and zero-downtime deployments.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- PROJECTS -->
+<div class="section-wrap" id="projects">
+  <div class="section-header">
+    <span class="section-num">03.</span>
+    <h2 class="section-title">Key Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-badge"><span class="badge-dot"></span> Live · Open Source</div>
+      <div class="project-name">NeuroSeek AI — Self-Hosted Multi-Agent Research Platform</div>
+      <div class="project-desc">A self-hosted AI research platform that runs end-to-end on a single <strong>4 GB CPU-only VPS</strong> — document RAG (PDF/DOCX/TXT/MD/CSV), live web search via self-hosted SearXNG, and an LLM-orchestrated multi-step workflow producing <strong>citation-backed Markdown &amp; PDF reports</strong> with live progress streamed to the browser. Polyglot architecture: Django for AI/CRUD + Go microservice for WebSocket fanout (~30 MB vs ~1 GB Daphne+Channels). Hybrid retrieval (pgvector cosine + Postgres FTS via Reciprocal Rank Fusion).</div>
+      <div class="project-tech">
+        <span class="tech-pill">Django 5</span><span class="tech-pill">Go</span><span class="tech-pill">PostgreSQL + pgvector</span>
+        <span class="tech-pill">Redis</span><span class="tech-pill">Celery</span><span class="tech-pill">SearXNG</span>
+        <span class="tech-pill">sentence-transformers</span><span class="tech-pill">WeasyPrint</span><span class="tech-pill">Docker</span>
+      </div>
+      <a href="https://github.com/Rony-ZenAlden/AI_Research" target="_blank" rel="noopener" class="project-link">↗ View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge"><span class="badge-dot"></span> Live in Production</div>
+      <div class="project-name">NLP Platform — AI Text Analysis Engine</div>
+      <div class="project-desc">End-to-end NLP platform with <strong>real-time transformer inference</strong> and batch pipelines. Sentiment analysis, complaint detection, and multi-class issue categorisation with team-assignment logic. CSV upload → bulk analysis → export.</div>
+      <div class="project-tech">
+        <span class="tech-pill">PyTorch</span><span class="tech-pill">Django 5.2</span><span class="tech-pill">Python</span>
+        <span class="tech-pill">NGINX</span><span class="tech-pill">Docker</span><span class="tech-pill">Chart.js</span>
+      </div>
+      <a href="https://aro-tech-vision.nl/nlp/" target="_blank" rel="noopener" class="project-link">↗ View Live Project</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge"><span class="badge-dot"></span> Live in Production</div>
+      <div class="project-name">AI Chest X-Ray Diagnosis</div>
+      <div class="project-desc">EfficientNetV2S + GeM Pooling + CLAHE preprocessing. <strong>COVID-19 AUC-ROC 0.997</strong>. Upload an X-ray → diagnosis + confidence score in seconds. Free, no account needed.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span><span class="tech-pill">TensorFlow</span><span class="tech-pill">Keras</span>
+        <span class="tech-pill">Django 5.2</span><span class="tech-pill">NGINX</span><span class="tech-pill">Docker</span>
+      </div>
+      <a href="https://aro-tech-vision.nl/xray/" target="_blank" rel="noopener" class="project-link">↗ View Live Project</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge"><span class="badge-dot"></span> Live in Production</div>
+      <div class="project-name">ARO Tech Vision — Web Platform</div>
+      <div class="project-desc">Production web platform — Django REST + Celery async email system + Redis caching achieving <strong>65% DB load reduction</strong>. Zero-downtime CI/CD pipeline.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Django</span><span class="tech-pill">Celery</span><span class="tech-pill">Redis</span>
+        <span class="tech-pill">PostgreSQL</span><span class="tech-pill">Docker</span><span class="tech-pill">Next.js</span>
+      </div>
+      <a href="https://aro-tech-vision.nl/" target="_blank" rel="noopener" class="project-link">↗ View Live Site</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">Local RAG Document QA System</div>
+      <div class="project-desc">Fully local <strong>Retrieval-Augmented Generation (RAG) pipeline</strong> for document-based QA using LLMs, embeddings, and vector search. Document ingestion → chunking → semantic retrieval → LLM answer generation. Optimised for privacy and offline usage.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span><span class="tech-pill">LangChain</span><span class="tech-pill">LlamaIndex</span>
+        <span class="tech-pill">Vector DB</span><span class="tech-pill">Transformers</span><span class="tech-pill">Django</span>
+      </div>
+      <a href="https://github.com/Rony-ZenAlden/local-rag-document-qa" target="_blank" rel="noopener" class="project-link">↗ View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">Mishwar — Ride-Hailing Platform</div>
+      <div class="project-desc">Full-stack ride-hailing app with Django REST, <strong>PostGIS proximity matching</strong>, dynamic fare engine, and 30+ documented endpoints. Live driver location updates every 2 s via WebSockets.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Django</span><span class="tech-pill">PostgreSQL</span><span class="tech-pill">Redis</span>
+        <span class="tech-pill">WebSockets</span><span class="tech-pill">Google Maps</span><span class="tech-pill">Docker</span>
+      </div>
+      <a href="https://github.com/Rony-ZenAlden/Mishwar-app" target="_blank" rel="noopener" class="project-link">↗ View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">Revenue Forecasting AI</div>
+      <div class="project-desc">Facebook Prophet on <strong>1M+ transactions across 1,115 stores</strong>. Holiday-adjusted 60-day forecasts with confidence intervals for inventory &amp; staffing decisions.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span><span class="tech-pill">Facebook Prophet</span><span class="tech-pill">Pandas</span>
+        <span class="tech-pill">Matplotlib</span>
+      </div>
+      <a href="https://github.com/Rony-ZenAlden/Revenue-Forecasting-AI" target="_blank" rel="noopener" class="project-link">↗ View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-badge"><span class="badge-dot"></span> Live in Production</div>
+      <div class="project-name">Qader — Educational Platform</div>
+      <div class="project-desc">Improved a live educational platform — optimised <strong>back-end performance</strong>, resolved critical bugs, enhanced UI responsiveness. Functional, security, and performance testing.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Django</span><span class="tech-pill">PostgreSQL</span>
+        <span class="tech-pill">Performance Testing</span><span class="tech-pill">Security</span>
+      </div>
+      <a href="https://qader.vip/" target="_blank" rel="noopener" class="project-link">↗ View Live Site</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">Customer Segmentation ML Pipeline</div>
+      <div class="project-desc">K-Means + custom Autoencoder (17 → 7 dims) on <strong>8,950 records</strong>. Identified 4 distinct behavioural clusters with PCA 2D visualisation for targeted marketing.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span><span class="tech-pill">TensorFlow</span><span class="tech-pill">Scikit-learn</span>
+        <span class="tech-pill">K-Means</span><span class="tech-pill">PCA</span>
+      </div>
+      <a href="https://github.com/Rony-ZenAlden/Customer_Segmentation_ML_Pipeline" target="_blank" rel="noopener" class="project-link">↗ View on GitHub</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name">Data Warehouse (Medallion Architecture)</div>
+      <div class="project-desc">Modern warehouse using <strong>Bronze / Silver / Gold layers</strong>. ETL pipelines, fact &amp; dimension tables, SQL-based analytics and Power BI dashboards.</div>
+      <div class="project-tech">
+        <span class="tech-pill">SQL</span><span class="tech-pill">ETL</span><span class="tech-pill">Data Modeling</span>
+        <span class="tech-pill">T-SQL</span><span class="tech-pill">Power BI</span>
+      </div>
+      <a href="https://github.com/Rony-ZenAlden/sql-data-warhouse-project" target="_blank" rel="noopener" class="project-link">↗ View on GitHub</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- CERTIFICATIONS -->
+<div class="section-wrap" id="certifications">
+  <div class="section-header">
+    <span class="section-num">04.</span>
+    <h2 class="section-title">Certifications</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card" onclick="window.open('https://www.credly.com/badges/ff116967-4cb0-4ff9-9f14-565c307b09fe/linked_in_profile','_blank')">
+      <div class="cert-issuer">IBM · Credly ↗</div>
+      <div class="cert-name">Artificial Intelligence Essentials V2</div>
+      <div class="cert-year">2025</div>
+    </div>
+    <div class="cert-card" onclick="window.open('https://www.credly.com/badges/755b71e4-2909-4daa-b30a-193fa56669fd/linked_in_profile','_blank')">
+      <div class="cert-issuer">IBM · Credly ↗</div>
+      <div class="cert-name">Data Engineering Professional</div>
+      <div class="cert-year">2025</div>
+    </div>
+    <div class="cert-card" onclick="window.open('https://drive.google.com/file/d/1Ht0oz-g9RMVVnrjWJoCodBzyqsQfPkg/view','_blank')">
+      <div class="cert-issuer">Cisco · New Horizons ↗</div>
+      <div class="cert-name">Certified Network Associate (CCNA)</div>
+      <div class="cert-year">2023</div>
+    </div>
+    <div class="cert-card" onclick="window.open('https://drive.google.com/file/d/1_0Q89gNf-sKAJaKOF47lz6Tz9DDwICBd/view','_blank')">
+      <div class="cert-issuer">Project International ↗</div>
+      <div class="cert-name">Project Management Professional (PMP v6)</div>
+      <div class="cert-year">2021</div>
+    </div>
+    <div class="cert-card" onclick="window.open('https://drive.google.com/file/d/1QIyXCsjGw06p0MQziLUA5gbP0TMZ2WSj/view','_blank')">
+      <div class="cert-issuer">New Horizons ↗</div>
+      <div class="cert-name">Marketing Management</div>
+      <div class="cert-year">2024</div>
+    </div>
+    <div class="cert-card" onclick="window.open('https://drive.google.com/file/d/1wDRoD8nxDWwcVJoAj4D_ySpZPr478aYN/view','_blank')">
+      <div class="cert-issuer">Canada International Center ↗</div>
+      <div class="cert-name">Strategic Planning</div>
+      <div class="cert-year">2023</div>
+    </div>
+    <div class="cert-card" onclick="window.open('https://drive.google.com/file/d/1SvEysoLROU3f9xlJhOhpgVSwlp3hUxys/view','_blank')">
+      <div class="cert-issuer">SGS — Societe Generale de Surveillance ↗</div>
+      <div class="cert-name">Quality Management System ISO 9001</div>
+      <div class="cert-year">2022</div>
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div style="margin-top:48px;">
+    <div class="section-header" style="margin-bottom:32px;">
+      <span class="section-num" style="font-size:11px;">EDU</span>
+      <h3 style="font-size:clamp(16px,2.5vw,20px);font-weight:700;letter-spacing:-0.01em;">Education</h3>
+      <div class="section-line"></div>
+    </div>
+    <div class="cert-card" style="max-width:500px;cursor:default;">
+      <div class="cert-issuer">Al-Shahba Private University, Aleppo</div>
+      <div class="cert-name">B.Sc. Informatics Engineering — Software &amp; Applications Development</div>
+      <div class="cert-year">Sep 2020 – Jun 2025</div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- CONTACT -->
+<div class="section-wrap" id="contact">
+  <div class="contact-grid">
+    <!-- Left -->
+    <div>
+      <h2 style="font-size:clamp(28px,5vw,52px);font-weight:800;letter-spacing:-0.02em;line-height:1.05;margin-bottom:20px;">
+        Let's build<br>something <span style="color:var(--accent);">real.</span>
+      </h2>
+      <p style="font-size:15px;line-height:1.75;color:var(--muted);margin-bottom:24px;">
+        Open to Back-End, AI, and ML roles in Germany or the Netherlands. EU Blue Card eligible. Available immediately for remote interviews.
+      </p>
+
+      <div class="intl-badge">
+        <span class="intl-chip intl-chip-eu">🇪🇺 EU Blue Card Eligible</span>
+        <span class="intl-chip intl-chip-de">🇩🇪 Germany</span>
+        <span class="intl-chip intl-chip-nl">🇳🇱 Netherlands</span>
+        <span class="intl-chip intl-chip-remote">🌐 Remote · Immediate</span>
+      </div>
+
+      <div class="contact-links" style="margin-top:20px;margin-bottom:20px;">
+        <a href="mailto:ronizenalden@gmail.com" class="contact-item">
+          <span class="icon">✉</span> ronizenalden@gmail.com
+        </a>
+        <a href="tel:+963981705334" class="contact-item">
+          <span class="icon">✆</span> +963 981 705 334
+        </a>
+        <a href="https://www.linkedin.com/in/rony-zeenaldeen-b288112ab/" target="_blank" rel="noopener" class="contact-item">
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </span> linkedin.com/in/rony-zeenaldeen
+        </a>
+        <a href="https://github.com/Rony-ZenAlden" target="_blank" rel="noopener" class="contact-item">
+          <span class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </span> github.com/Rony-ZenAlden
+        </a>
+        <a href="Rony_Zeenaldeen_CV.pdf" download class="contact-item">
+          <span class="icon">↓</span> Download CV (PDF)
+        </a>
+      </div>
+
+      <div class="avail-box">
+        <div class="avail-status"><span class="status-dot"></span> Available for new opportunities</div>
+        <div class="avail-details">
+          <div class="avail-row"><span class="avail-key">Location</span><span class="avail-val">Germany or Netherlands</span></div>
+          <div class="avail-row"><span class="avail-key">Status</span><span class="avail-val">EU Blue Card Eligible</span></div>
+          <div class="avail-row"><span class="avail-key">Remote</span><span class="avail-val">Available Immediately</span></div>
+          <div class="avail-row"><span class="avail-key">Roles</span><span class="avail-val">Back-End · AI · ML</span></div>
+        </div>
+        <div class="lang-section">
+          <div class="lang-title">Languages</div>
+          <div class="lang-bars">
+            <div class="lang-row">
+              <div class="lang-meta"><span class="lang-name">Arabic</span><span class="lang-level">Native</span></div>
+              <div class="lang-bar"><div class="lang-fill" data-width="100"></div></div>
+            </div>
+            <div class="lang-row">
+              <div class="lang-meta"><span class="lang-name">English</span><span class="lang-level">C1 Proficient</span></div>
+              <div class="lang-bar"><div class="lang-fill" data-width="90"></div></div>
+            </div>
+            <div class="lang-row">
+              <div class="lang-meta"><span class="lang-name">German</span><span class="lang-level">A1 · Learning</span></div>
+              <div class="lang-bar"><div class="lang-fill" data-width="15"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Contact Form -->
+    <div class="contact-form-wrap">
+      <div class="form-title">// Send a Message</div>
+      <p class="form-hint">Fill in the form — it will open your email client with everything pre-filled and ready to send.</p>
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">Name</label>
+            <input type="text" id="fname" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="femail">Email</label>
+            <input type="email" id="femail" name="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fsubject">Subject</label>
+          <input type="text" id="fsubject" name="subject" placeholder="Job opportunity / Collaboration / Question" required>
+        </div>
+        <div class="form-group">
+          <label for="fmessage">Message</label>
+          <textarea id="fmessage" name="message" rows="6" placeholder="Tell me about the role or project..." required></textarea>
+        </div>
+        <button type="submit" class="form-submit">↗ Send Message</button>
+        <div class="form-success" id="formSuccess">✓ Email client opened — your message is ready to send!</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo">Rony Zeenaldeen</div>
+      <div class="footer-socials">
+        <a href="https://github.com/Rony-ZenAlden" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/rony-zeenaldeen-b288112ab/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:ronizenalden@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
+        </a>
+        <a href="Rony_Zeenaldeen_CV.pdf" download aria-label="Download CV">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Rony Zeenaldeen · Back-End &amp; AI/ML Engineer</span>
+      <span>rony-zenalden.github.io</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── custom cursor (desktop only) ──
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  if(cursor && ring) {
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+    (function tick(){
+      cursor.style.left=mx+'px';cursor.style.top=my+'px';
+      rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+      ring.style.left=rx+'px';ring.style.top=ry+'px';
+      requestAnimationFrame(tick);
+    })();
+    document.querySelectorAll('a,button,input,textarea').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2)';ring.style.opacity='0';});
+      el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';ring.style.opacity='0.4';});
+    });
+  }
+
+  // ── navbar scroll ──
+  const navbar=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>{navbar.classList.toggle('scrolled',window.pageYOffset>50);});
+
+  // ── hamburger menu ──
+  const hamburger=document.getElementById('hamburger');
+  const mobileMenu=document.getElementById('mobileMenu');
+  hamburger.addEventListener('click',()=>{
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  // close on link click
+  mobileMenu.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click',()=>{
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+  // close on outside click
+  document.addEventListener('click',e=>{
+    if(!navbar.contains(e.target)&&!mobileMenu.contains(e.target)){
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+  });
+
+  // ── typing effect ──
+  const phrases=['python manage.py runserver','go run main.go','docker-compose up --build','git push origin main','curl -X POST /api/predict/','langchain run rag_pipeline.py'];
+  let pi=0,ci=0,del=false;
+  const typedEl=document.getElementById('typed');
+  function type(){
+    const w=phrases[pi];
+    if(!del){typedEl.textContent=w.slice(0,ci++);if(ci>w.length){del=true;setTimeout(type,1400);return;}}
+    else{typedEl.textContent=w.slice(0,ci--);if(ci<0){del=false;pi=(pi+1)%phrases.length;ci=0;}}
+    setTimeout(type,del?40:75);
+  }
+  setTimeout(type,2000);
+
+  // ── scroll-triggered card animations ──
+  const obsOpts={threshold:0.1,rootMargin:'0px 0px -50px 0px'};
+  const cardObs=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80);});
+  },obsOpts);
+  document.querySelectorAll('.exp-item,.project-card').forEach(el=>cardObs.observe(el));
+
+  const fadeObs=new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting)setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform='translateY(0)';},i*60);
+    });
+  },obsOpts);
+  document.querySelectorAll('.skill-group,.cert-card').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(30px)';
+    el.style.transition='opacity 0.6s ease,transform 0.6s ease';
+    fadeObs.observe(el);
+  });
+
+  document.querySelectorAll('.project-card').forEach((c,i)=>{c.style.transitionDelay=(i*0.06)+'s';});
+
+  // ── language bars ──
+  const langObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.querySelectorAll('.lang-fill').forEach(f=>{f.style.width=f.dataset.width+'%';});});
+  },{threshold:0.3});
+  const langBox=document.querySelector('.lang-bars');
+  if(langBox)langObs.observe(langBox);
+
+  // ── contact form → mailto ──
+  document.getElementById('contactForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    const name=document.getElementById('fname').value.trim();
+    const email=document.getElementById('femail').value.trim();
+    const subject=document.getElementById('fsubject').value.trim();
+    const message=document.getElementById('fmessage').value.trim();
+    if(!name||!email||!subject||!message){alert('Please fill in all fields.');return;}
+    const body=encodeURIComponent('From: '+name+' <'+email+'>\n\n'+message);
+    window.location.href='mailto:ronizenalden@gmail.com?subject='+encodeURIComponent(subject)+'&body='+body;
+    document.getElementById('formSuccess').classList.add('show');
+  });
+</script>
+</body>
+</html>
